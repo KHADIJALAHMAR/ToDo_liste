@@ -29,6 +29,11 @@
         this.title =  title;
         this.tasks= [];
     }
+
+    addTask(task) {
+        this.tasks.push(task);
+        return this.tasks.push(task);
+    }
 }
 
 
@@ -51,5 +56,5 @@ class Task{
     this.status = status;
     this.name = name ;
     }
-    
+
 }
