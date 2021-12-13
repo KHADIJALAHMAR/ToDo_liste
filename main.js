@@ -45,6 +45,7 @@ const Add_Project =document.getElementById('btnProject');
 
 Add_Project.addEventListener('click',()=>
 {
+    const project = new Project(ref.value, title.value);
     
 }
 
