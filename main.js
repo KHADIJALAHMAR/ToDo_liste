@@ -41,12 +41,14 @@ const Add_Project =document.getElementById('btnProject');
     }
 }
 
+const projects = [];
 // event button Add Project
 
 Add_Project.addEventListener('click',()=>
 {
     const project = new Project(ref.value, title.value);
-    
+    projects.push(project);
+    localStorage.setItem('project' ,JSON.stringify(projects));
 }
 
 
