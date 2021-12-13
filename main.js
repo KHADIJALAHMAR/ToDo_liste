@@ -3,30 +3,6 @@
 const Add_Project =document.getElementById('btnProject');
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // create classe Project
  class Project{
     constructor(ref,title){
@@ -54,18 +30,6 @@ Add_Project.addEventListener('click',()=>
 
 )
 
-
-
-
-
-
-
-
-
-
-
-
-
 // create class task 
 class Task{
     constructor(status,name){
@@ -74,3 +38,7 @@ class Task{
     }
 
 }
+Add_Task.addEventListener('click',()=>
+{
+    
+})
