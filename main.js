@@ -7,9 +7,7 @@ const title = document.getElementById('title');
 
 // DOM task
 const Add_task = document.getElementById('btnTask');
-const name = document.getElementById('name');
-const status = document.getElementById('status');
-const auther= document.getElementById('auther');
+
 
 
 
@@ -56,7 +54,14 @@ class Task{
 
 
 // event button Add Task
-// addTask.addEventListener('click',()=>
-// {
-//     const task = new Task(status.value)
-// })
+Add_task.addEventListener('click',()=>
+{
+    const name = document.getElementById('name');
+    const status = document.getElementById('status');
+    const auther= document.getElementById('auther');
+    const tasks = new Task(status.value, name.value,auther.value)
+    localStorage.setItem('tasks' ,JSON.stringify(tasks));
+
+
+
+})
