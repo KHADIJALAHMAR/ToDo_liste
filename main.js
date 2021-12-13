@@ -1,6 +1,20 @@
 // DOM
-// Button add pRoject
+//  pRoject
 const Add_Project =document.getElementById('btnProject');
+const ref = document.getElementById('ref');
+const title = document.getElementById('title');
+
+
+// DOM task
+const Add_task = document.getElementById('btnTask');
+const name = document.getElementById('name');
+const status = document.getElementById('status');
+const auther= document.getElementById('auther');
+
+
+
+
+
 
 
 // create classe Project
@@ -32,13 +46,17 @@ Add_Project.addEventListener('click',()=>
 
 // create class task 
 class Task{
-    constructor(status,name){
+    constructor(status,name,auther){
     this.status = status;
     this.name = name ;
+    this.auther = auther;
     }
 
 }
-Add_Task.addEventListener('click',()=>
-{
-    
-})
+
+
+// event button Add Task
+// addTask.addEventListener('click',()=>
+// {
+//     const task = new Task(status.value)
+// })
