@@ -5,7 +5,15 @@ const Add_Project =document.getElementById('btnProject');
 // DOM task
 const Add_task = document.getElementById('btnTask');
 
+//  get id From Url
+const urlParams = new URLSearchParams(window.location.search);
+    let Pid;
+    if (urlParams.get("id") !== null) {
+      Pid = urlParams.get("id");
+    }
 
+
+// generate id 
 function uuidv4() {
     return ([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g, c =>
       (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
@@ -14,7 +22,7 @@ function uuidv4() {
 //   console.log(uuidv4);
 
 
-  
+
 // create classe Project
  class Project{
     
@@ -45,9 +53,9 @@ Add_Project.addEventListener('click',(e)=>
     show_Project();
     localStorage.setItem('projects' ,JSON.stringify(projects));
 }
-
-
 );
+
+// event delet project
 
 
 function show_Project() {
@@ -67,19 +75,13 @@ function setInnerHTML(id, descreption, title) {
     `
 }
 
-// function showProjectItems() {
-//     const selectInput = document.getElementById('projectSelect');
-//     selectInput.innerHTML = "";
-//     localStorage.setItem('project' ,JSON.stringify(projects)).forEach(p => {
-//         selectInput.innerHTML += `
-//             <option value="${p.id}">${p.title}</option>
-//         `;
-//     })
-// }
 
+function deleteProject (id){
+    let get_projects = JSON.parse(localStorage.getItem('projects'));
+    let new_projects = get_projects.filter((project)=> project.id !== id);
+    localStorage.setItem("projects", JSON.stringify(new_projects));
+}
 
-// const createLIst = document.createElement('ul');
-// const get_project = localStorage.getItem(JSON.parse(project));
 
 
 // create class task 
@@ -92,7 +94,6 @@ class Task{
 }
 
 
-// event button Add Task
 
 Add_task.addEventListener('click',(e)=>
 {
@@ -100,13 +101,6 @@ Add_task.addEventListener('click',(e)=>
     const name = document.getElementById('name');
     const status = document.getElementById('status');
     const auther= document.getElementById('auther');
-
-    // get id url
-    const urlParams = new URLSearchParams(window.location.search);
-    let Pid;
-    if (urlParams.get("id") !== null) {
-      Pid = urlParams.get("id");
-    }
 
 
     let task = new Task(status.value, name.value, auther.value);
@@ -118,6 +112,8 @@ Add_task.addEventListener('click',(e)=>
     localStorage.setItem('projects',JSON.stringify(get_projects) );
 
 })
+
+
 
 
 
