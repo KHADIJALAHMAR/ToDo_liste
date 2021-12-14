@@ -25,11 +25,6 @@ function uuidv4() {
         this.tasks= [];
     }
 
-    addTask(task) {
-        this.tasks.push(task);
-        // console.log('Task ' + task);
-        return this.tasks.push(task);
-    }
 }
 
 if (localStorage.getItem('projects') === null) {
@@ -58,16 +53,16 @@ Add_Project.addEventListener('click',(e)=>
 function show_Project() {
     let allProjects = JSON.parse(localStorage.getItem("projects"));
     allProjects.forEach((element) => {
-        setInnerHTML(element.id, element.descreption, element.title);
+        setInnerHTML(element.id,element.descreption, element.title);
     });
 }
 
-function setInnerHTML( descreption, title) {
+function setInnerHTML(id, descreption, title) {
     const divProjects = document.getElementById("projects");
     divProjects.innerHTML  += ` 
         <tr> 
+        <td><a href="http://127.0.0.1:5503/index.html?id=${id}"> ${title}</a></td>
         <td>${descreption}</td>
-        <td>${title}</td>
         </tr>
     `
 }
@@ -105,14 +100,23 @@ Add_task.addEventListener('click',(e)=>
     const name = document.getElementById('name');
     const status = document.getElementById('status');
     const auther= document.getElementById('auther');
-    const idProject = document.getElementById("idProject")
+
+    // get id url
+    const urlParams = new URLSearchParams(window.location.search);
+    let Pid;
+    if (urlParams.get("id") !== null) {
+      Pid = urlParams.get("id");
+    }
+
 
     let task = new Task(status.value, name.value, auther.value);
-    // console.log('XD' + task.name);
-    const tasks = localStorage.setItem('task', JSON.stringify(task));
-    // const all_projects = new Project();
-    // all_projects.addTask(task);
-    // console.log(all_projects.tasks);
+    let get_projects=JSON.parse(localStorage.getItem('projects'));
+    let project = get_projects.filter((project)=> project.id === Pid);
+    project[0].tasks.push(task);
+    // console.log(project);
+    console.log(get_projects);
+    localStorage.setItem('projects',JSON.stringify(get_projects) );
+
 })
 
 
