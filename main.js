@@ -4,7 +4,6 @@ const Add_Project =document.getElementById('btnProject');
 
 // DOM task
 const Add_task = document.getElementById('btnTask');
-
 //  get id From Url
 const urlParams = new URLSearchParams(window.location.search);
     let Pid;
@@ -75,12 +74,20 @@ function setInnerHTML(id, descreption, title) {
     `
 }
 
+document.getElementById('deleteBtn').addEventListener('click', (e) => {
 
+    e.preventDefault();
+    deleteProject(Pid);
+});
 function deleteProject (id){
+
     let get_projects = JSON.parse(localStorage.getItem('projects'));
     let new_projects = get_projects.filter((project)=> project.id !== id);
     localStorage.setItem("projects", JSON.stringify(new_projects));
+    console.log('hello');
+    window.location.assign("http://127.0.0.1:5503/index.html")
 }
+
 
 
 
